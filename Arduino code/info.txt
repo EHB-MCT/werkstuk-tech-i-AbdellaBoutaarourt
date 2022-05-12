@@ -1,1 +1,51 @@
-Zet hier de arduino code
+int capteur = 4;
+int detection = 0;
+int BluePin = 10;
+int buzzer = 8;
+
+void setup() {
+  pinMode(capteur, INPUT);
+  Serial.begin(9600);
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(BluePin, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  detection =digitalRead(capteur);
+if(detection == HIGH) {
+  digitalWrite(buzzer, HIGH);
+  Serial.println("Motion detected");
+ setColor(0, 0, 10);  // light blue
+ tone(buzzer, 250);
+  delay(500);
+  setColor(0, 0, 50);  // light blue
+   tone(buzzer, 500);
+  delay(500);
+   setColor(0, 0, 100);  // light blue
+    tone(buzzer, 1000);
+  delay(500);  
+  setColor(0, 0, 150);  // blue
+   tone(buzzer, 1500);
+  delay(500);
+   setColor(0, 0, 200);  // light blue
+    tone(buzzer, 2000);
+  delay(500);  
+  setColor(0, 0, 2550);  // dark blue
+   tone(buzzer, 2500);
+  delay(500);
+}
+else{
+  Serial.println("===nothing moves");
+  setColor(0, 0, 1);  // yellow blue
+  tone(buzzer, 0);
+  }
+ 
+
+  delay(200);
+}
+ void setColor(int red, int green, int blue)
+{
+  analogWrite(BluePin, blue);
+}
